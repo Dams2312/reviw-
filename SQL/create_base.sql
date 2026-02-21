@@ -112,4 +112,12 @@ CREATE TABLE Recetas(
     id_cita INT,
     FOREIGN KEY (id_diagnostico) REFERENCES Diagnosticos(id_diagnostico),
     FOREIGN KEY (id_cita) REFERENCES Citas(id_cita)
+);  
+
+CREATE TABLE Log_Errores (
+    id_error INT AUTO_INCREMENT PRIMARY KEY,
+    nombre_tabla VARCHAR(100),
+    codigo_error INT,
+    mensaje_error TEXT,
+    fecha_hora DATETIME DEFAULT CURRENT_TIMESTAMP
 );

@@ -1,7 +1,7 @@
 /*Pacientes*/
 DELIMITER $$
 
-CREATE PROCEDURE sp_crear_paciente(
+CREATE PROCEDURE crear_paciente(
     IN p_codigo VARCHAR(10),
     IN p_nombre VARCHAR(60),
     IN p_apellido VARCHAR(60),
@@ -27,11 +27,11 @@ END$$
 
 DELIMITER ;
 
-CALL sp_crear_paciente('P-504','Juan','Perez','600-888');
+CALL crear_paciente('P-504','Juan','Perez','600-888');
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_buscar_paciente(
+CREATE PROCEDURE buscar_paciente(
     IN p_id INT
 )
 BEGIN
@@ -56,11 +56,11 @@ END$$
 
 DELIMITER ;
 
-CALL sp_buscar_paciente(1);
+CALL buscar_paciente(1);
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_actualizar_paciente(
+CREATE PROCEDURE actualizar_paciente(
     IN p_id INT,
     IN p_codigo VARCHAR(10),
     IN p_nombre VARCHAR(60),
@@ -77,7 +77,7 @@ BEGIN
             v_codigo = MYSQL_ERRNO,
             v_mensaje = MESSAGE_TEXT;
 
-        INSERT INTO Herrores(nombre_tabla, codigo_error, mensaje_error)
+        INSERT INTO Log_Errores(nombre_tabla, codigo_error, mensaje_error)
         VALUES('Pacientes', v_codigo, v_mensaje);
     END;
 
@@ -91,11 +91,11 @@ END$$
 
 DELIMITER ;
 
-CALL sp_actualizar_paciente(4,'P-504','Javier','Perez','600-888');
+CALL actualizar_paciente(4,'P-504','Javier','Perez','600-888');
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_eliminar_paciente(
+CREATE PROCEDURE eliminar_paciente(
     IN p_id INT
 )
 BEGIN
@@ -118,13 +118,13 @@ END$$
 
 DELIMITER ;
 
-CALL sp_eliminar_paciente(4);
+CALL eliminar_paciente(4);
 
 /*Facultad_Origen*/
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_crear_facultad(
+CREATE PROCEDURE crear_facultad(
     IN p_facultad VARCHAR(100),
     IN p_decano VARCHAR(100)
 )
@@ -148,7 +148,7 @@ END$$
 DELIMITER ;
 
 DELIMITER $$
-CREATE PROCEDURE sp_listar_facultad(IN p_id INT)
+CREATE PROCEDURE listar_facultad(IN p_id INT)
 BEGIN
     DECLARE v_codigo INT;
     DECLARE v_mensaje TEXT;
@@ -171,7 +171,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_actualizar_facultad(
+CREATE PROCEDURE actualizar_facultad(
     IN p_id INT,
     IN p_facultad VARCHAR(100),
     IN p_decano VARCHAR(100)
@@ -205,7 +205,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_eliminar_facultad(IN p_id INT)
+CREATE PROCEDURE eliminar_facultad(IN p_id INT)
 BEGIN
     DECLARE v_codigo INT;
     DECLARE v_mensaje TEXT;
@@ -235,7 +235,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_crear_hospital(
+CREATE PROCEDURE crear_hospital(
     IN p_sede VARCHAR(150),
     IN p_dir VARCHAR(150)
 )
@@ -260,7 +260,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_listar_hospital(IN p_id INT)
+CREATE PROCEDURE listar_hospital(IN p_id INT)
 BEGIN
     DECLARE v_codigo INT;
     DECLARE v_mensaje TEXT;
@@ -285,7 +285,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_actualizar_hospital(
+CREATE PROCEDURE actualizar_hospital(
     IN p_id INT,
     IN p_sede VARCHAR(150),
     IN p_dir VARCHAR(150)
@@ -319,7 +319,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_eliminar_hospital(IN p_id INT)
+CREATE PROCEDURE eliminar_hospital(IN p_id INT)
 BEGIN
     DECLARE v_codigo INT;
     DECLARE v_mensaje TEXT;
@@ -349,7 +349,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_crear_diagnostico(
+CREATE PROCEDURE crear_diagnostico(
     IN p_diagnostico VARCHAR(150)
 )
 BEGIN
@@ -374,7 +374,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_listar_diagnostico(IN p_id INT)
+CREATE PROCEDURE listar_diagnostico(IN p_id INT)
 BEGIN
     DECLARE v_codigo INT;
     DECLARE v_mensaje TEXT;
@@ -399,7 +399,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_actualizar_diagnostico(
+CREATE PROCEDURE actualizar_diagnostico(
     IN p_id INT,
     IN p_diagnostico VARCHAR(150)
 )
@@ -426,7 +426,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_eliminar_diagnostico(IN p_id INT)
+CREATE PROCEDURE eliminar_diagnostico(IN p_id INT)
 BEGIN
     DECLARE v_codigo INT;
     DECLARE v_mensaje TEXT;
@@ -451,7 +451,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_crear_medico(
+CREATE PROCEDURE crear_medico(
     IN p_codigo VARCHAR(10),
     IN p_nombre VARCHAR(100),
     IN p_especialidad VARCHAR(100),
@@ -479,7 +479,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_listar_medico(IN p_id INT)
+CREATE PROCEDURE listar_medico(IN p_id INT)
 BEGIN
     DECLARE v_codigo INT;
     DECLARE v_mensaje TEXT;
@@ -503,7 +503,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_actualizar_medico(
+CREATE PROCEDURE actualizar_medico(
     IN p_id INT,
     IN p_codigo VARCHAR(10),
     IN p_nombre VARCHAR(100),
@@ -536,7 +536,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_eliminar_medico(IN p_id INT)
+CREATE PROCEDURE eliminar_medico(IN p_id INT)
 BEGIN
     DECLARE v_codigo INT;
     DECLARE v_mensaje TEXT;
@@ -561,7 +561,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_crear_cita(
+CREATE PROCEDURE crear_cita(
     IN p_codigo VARCHAR(10),
     IN p_fecha DATE,
     IN p_id_hospital INT,
@@ -590,7 +590,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_listar_cita(IN p_id INT)
+CREATE PROCEDURE listar_cita(IN p_id INT)
 BEGIN
     DECLARE v_codigo INT;
     DECLARE v_mensaje TEXT;
@@ -614,7 +614,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_actualizar_cita(
+CREATE PROCEDURE actualizar_cita(
     IN p_id INT,
     IN p_codigo VARCHAR(10),
     IN p_fecha DATE,
@@ -649,7 +649,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_eliminar_cita(IN p_id INT)
+CREATE PROCEDURE eliminar_cita(IN p_id INT)
 BEGIN
     DECLARE v_codigo INT;
     DECLARE v_mensaje TEXT;
@@ -674,7 +674,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_crear_receta(
+CREATE PROCEDURE crear_receta(
     IN p_id_diagnostico INT,
     IN p_medicamento VARCHAR(150),
     IN p_dosis VARCHAR(50),
@@ -702,7 +702,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_listar_receta(IN p_id INT)
+CREATE PROCEDURE listar_receta(IN p_id INT)
 BEGIN
     DECLARE v_codigo INT;
     DECLARE v_mensaje TEXT;
@@ -726,7 +726,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_actualizar_receta(
+CREATE PROCEDURE actualizar_receta(
     IN p_id INT,
     IN p_id_diagnostico INT,
     IN p_medicamento VARCHAR(150),
@@ -759,7 +759,7 @@ DELIMITER ;
 
 DELIMITER $$
 
-CREATE PROCEDURE sp_eliminar_receta(IN p_id INT)
+CREATE PROCEDURE eliminar_receta(IN p_id INT)
 BEGIN
     DECLARE v_codigo INT;
     DECLARE v_mensaje TEXT;
