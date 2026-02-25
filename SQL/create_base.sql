@@ -121,3 +121,14 @@ CREATE TABLE Log_Errores (
     mensaje_error TEXT,
     fecha_hora DATETIME DEFAULT CURRENT_TIMESTAMP
 );
+
+CREATE TABLE Informes (
+    id_informe INT AUTO_INCREMENT PRIMARY KEY,
+    fecha_informe DATE NOT NULL,
+    id_hospital INT NOT NULL,
+    id_medico INT NOT NULL,
+    total_pacientes INT NOT NULL,
+    fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (id_hospital) REFERENCES Hospitales(id_hospital),
+    FOREIGN KEY (id_medico) REFERENCES Medicos(id_medico)
+);
