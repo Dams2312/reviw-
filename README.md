@@ -130,6 +130,17 @@ Gefe Doctor: tiene permisos para ver medicos , facultad de origen del medico, re
 
 secretario: tiene permisos para insertar, editar eliminar y seleccionar medicos y citas deviso que para esta persona dependiendo del trabajo que ponga el gefe agregara eliminara y medicos y podra cancelar agregar o editar una cita o datos de medico
 
+## Optimisacion
+
+Cuenta con dos vistas :
+- vista de medicos en la que se relaciona su facultad y especialidad
+- vista de el numero de pacientes por medicamento
+
+Cuenta con particiones a distintas tablas para mejorar su optimizacion:
+- en la tabla informes para mejorar la optimizacion de consultas que se agan por fechas.
+- en la tabla Log_Errores para mejorar la optimizacion de consultas que se agan en una determinada fecha.
+- en la tabla de citas para mejorar la optimizacion de consultas que se agan en una determinada fecha.
+
 ## Autor : Danny Julian Velasco Olarte 
 
 Sistema desarrollado con enfoque académico para práctica de

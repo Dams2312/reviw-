@@ -102,7 +102,12 @@
 		FOREIGN KEY (id_hospital) REFERENCES Hospitales(id_hospital),
 		FOREIGN KEY (id_paciente) REFERENCES Pacientes(id_paciente),
 		FOREIGN KEY (id_medicos) REFERENCES Medicos(id_medico)
-	);
+)PARTITION BY RANGE (YEAR(fecha_cita)) (
+		PARTITION p2024 VALUES LESS THAN (2025),
+		PARTITION p2025 VALUES LESS THAN (2026),
+		PARTITION p2026 VALUES LESS THAN (2027),
+		partition p2027 values less than (2028)
+);
 
 CREATE TABLE Recetas(
     id_solucion INT auto_increment PRIMARY KEY,
@@ -120,6 +125,11 @@ CREATE TABLE Log_Errores (
     codigo_error INT,
     mensaje_error TEXT,
     fecha_hora DATETIME DEFAULT CURRENT_TIMESTAMP
+)PARTITION BY RANGE (YEAR(fecha_cita)) (
+	PARTITION p2024 VALUES LESS THAN (2025),
+	PARTITION p2025 VALUES LESS THAN (2026),
+	PARTITION p2026 VALUES LESS THAN (2027),
+	partition p2027 values less than (2028)
 );
 
 CREATE TABLE Informes (
@@ -131,4 +141,9 @@ CREATE TABLE Informes (
     fecha_registro TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (id_hospital) REFERENCES Hospitales(id_hospital),
     FOREIGN KEY (id_medico) REFERENCES Medicos(id_medico)
+)PARTITION BY RANGE (YEAR(fecha_cita)) (
+		PARTITION p2024 VALUES LESS THAN (2025),
+		PARTITION p2025 VALUES LESS THAN (2026),
+		PARTITION p2026 VALUES LESS THAN (2027),
+		partition p2027 values less than (2028)
 );
